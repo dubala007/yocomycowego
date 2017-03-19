@@ -1,20 +1,18 @@
-# ![MediaElementJS](https://cloud.githubusercontent.com/assets/910829/22357262/e6cf32b4-e404-11e6-876b-59afa009f65c.png)
+# ![MediaElementJS](https://cloud.githubusercontent.com/)
 
 One file. Any browser. Same UI.
 
-* Author: John Dyer [http://j.hn/](http://j.hn/)
-* Website: [http://mediaelementjs.com/](http://mediaelementjs.com/)
-* License: [MIT](http://johndyer.mit-license.org/)
-* Meaning: Use everywhere, keep copyright, it'd be swell if you'd link back here.
-* Thanks: my employer, [Dallas Theological Seminary](http://www.dts.edu/)
-* Contributors: [all contributors](https://github.com/johndyer/mediaelement/graphs/contributors)
-* Currently maintained by Rafael Miranda (@ron666)
+* Author: 
+* Website: [http://yocomycowego.com/](http://yocomycowego.com/)
+* License: [MIT](http://dubala007.mit-license.org/)
+* Contributors: [all contributors](https://github.com/dubala007/yocomycowego/graphs/contributors)
+* Currently maintained by dubala007
 
-[![GitHub Version](https://img.shields.io/npm/v/mediaelement.svg)](https://github.com/johndyer/mediaelement)
-[![Build Status](https://img.shields.io/travis/johndyer/mediaelement.svg)](https://travis-ci.org/johndyer/mediaelement)
-[![Coverage Status](https://img.shields.io/coveralls/johndyer/mediaelement.svg)](https://coveralls.io/github/johndyer/mediaelement)
-[![MIT License](https://img.shields.io/npm/l/mediaelement.svg)](https://johndyer.mit-license.org/)
-[![CDNJS](https://img.shields.io/cdnjs/v/mediaelement.svg)](https://cdnjs.com/libraries/mediaelement)
+[![GitHub Version](https://img.shields.io/npm/v/mediaelement.svg)](https://github.com/johndyer/yocomycowego)
+[![Build Status](https://img.shields.io/travis/johndyer/mediaelement.svg)](https://travis-ci.org/johndyer/yocomycowego)
+[![Coverage Status](https://img.shields.io/coveralls/johndyer/mediaelement.svg)](https://coveralls.io/github/johndyer/yocomycowego)
+[![MIT License](https://img.shields.io/npm/l/yocomycowego.svg)](https://dubala07.mit-license.org/)
+[![CDNJS](https://img.shields.io/cdnjs/v/yocomycowego.svg)](https://cdnjs.com/libraries/yocomycowego)
 
 # Table of Contents
 
@@ -31,12 +29,12 @@ One file. Any browser. Same UI.
 
 _MediaElementPlayer: HTML5 `<video>` and `<audio>` player_
 
-A complete HTML/CSS audio/video player built on top `MediaElement.js` and `jQuery`. Many great HTML5 players have a completely separate Flash UI in fallback mode, but MediaElementPlayer.js uses the same HTML/CSS for all players.
+A complete HTML/CSS audio/video player built on top `yocomycowego.js` and `jQuery`. Many great HTML5 players have a completely separate Flash UI in fallback mode, but MediaElementPlayer.js uses the same HTML/CSS for all players.
 
-`MediaElement.js` is a set of custom Flash plugins that mimic the HTML5 MediaElement API for browsers that don't support HTML5 or don't support the media codecs you're using. 
+`yocomycowego.js` is a set of custom Flash plugins that mimic the HTML5 MediaElement API for browsers that don't support HTML5 or don't support the media codecs you're using. 
 Instead of using Flash as a _fallback_, Flash is used to make the browser seem HTML5 compliant and enable codecs like H.264 (via Flash) on all browsers.
 
-In general, `MediaElement.js` supports **IE9+, MS Edge, Chrome, Firefox, Safari, iOS 8+** and **Android 4.0+**.
+In general, `yocomycowego.js` supports **IE9+, MS Edge, Chrome, Firefox, Safari, iOS 8+** and **Android 4.0+**.
 
 <a id="migration"></a>
 ## * IMPORTANT: Migrating from `2.x` to `3.x` version
@@ -45,7 +43,7 @@ In order to successfully install `3.x` in an existing setup, you must consider t
 
 1. If your installation relies on the legacy player classes (i.e., `mejs-player`, `mejs-container`, etc.), you **must** set up the proper namespace. In `2.x`, the default namespace is `mejs-` but now is `mejs__`. In order to set up a new namespace (or the legacy one), use the `classPrefix` configuration, and make sure you use the `mediaelementplayer-legacy` stylesheet provided in the `/build/` folder.
 
-2. By default, `MediaElement` has bundled native renderers, such as HLS, M(PEG)-DASH and FLV, as well as YouTube and Flash shims. **If you want to use any other renderer, you MUST refer to the `build/renderers` folder and add as many as you want**. Check `demo/index.html` for a better reference.
+2. By default, `yocomycowego` has bundled native renderers, such as HLS, M(PEG)-DASH and FLV, as well as YouTube and Flash shims. **If you want to use any other renderer, you MUST refer to the `build/renderers` folder and add as many as you want**. Check `demo/index.html` for a better reference.
 
 3. You **must** set up now the path for the Flash shims if they are not in the same folder as the JS files. To do this, set the path via the `pluginPath` configuration. In the same topic, if you need to support browsers with Javascript disabled, you **must** reference the correct Flash shim, since in `2.x` there was only a single Flash shim and in `3.x` it was split to target specific media types. Check the [Browsers with JavaScript disabled](docs/installation.md#disabled-javascript) section for more details.
  
@@ -56,7 +54,7 @@ In order to successfully install `3.x` in an existing setup, you must consider t
 6. `pluginType` was removed to favor `rendererName`. If you rely on that element, just create conditionals based on the renderer ID (all listed [here](docs/usage.md#renderers-list)). For example:
 
 ```javascript
-$('video, audio').mediaelementplayer({
+$('video, audio').yocomycowegoplayer({
         // Configuration
         success: function(media) {
                 var isNative = media.rendererName.match(/html5|native/);
@@ -73,16 +71,16 @@ $('video, audio').mediaelementplayer({
 <a id="installation"></a>
 ## Installation and Usage
 
-The full documentation on how to install `MediaElement.js` is available at [Installation](docs/installation.md).
+The full documentation on how to install `yocomycowego.js` is available at [Installation](docs/installation.md).
 
-A brief guide on how to create and use instances of `MediaElement` available at [Usage](docs/usage.md).
+A brief guide on how to create and use instances of `yocomycowego` available at [Usage](docs/usage.md).
 
-Additional features can be found at https://github.com/johndyer/mediaelement-plugins
+Additional features can be found at https://github.com/dubala007/yocomycowego-plugins
 
 <a id="api"></a>
 ## API and Configuration
    
-`MediaElement.js` has many options that you can take advantage from. Visit [API and Configuration](docs/api.md) for more details.
+`yocomycowego.js` has many options that you can take advantage from. Visit [API and Configuration](docs/api.md) for more details.
 
 <a id="guidelines"></a>
 ## Guidelines for Contributors
