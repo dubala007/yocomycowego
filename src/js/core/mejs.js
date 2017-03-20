@@ -3,13 +3,13 @@
 import window from 'global/window';
 
 // Namespace
-const mejs = {};
+const ycmc = {};
 
 // version number
-mejs.version = '4.0.0';
+ycmc.version = '4.0.0';
 
 // Basic HTML5 settings
-mejs.html5media = {
+ycmc.html5media = {
 	/**
 	 * @type {String[]}
 	 */
@@ -50,6 +50,6 @@ mejs.html5media = {
 	]
 };
 
-window.mejs = mejs;
+window.ycmc = ycmc;
 
-export default mejs;
+export default ycmc;
