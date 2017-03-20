@@ -33,12 +33,12 @@ class Renderer {
 	/**
 	 * Iterate a list of renderers to determine which one should the player use.
 	 *
-	 * @param {Object[]} mediaFiles - A list of source and type obtained from video/audio/source tags: [{src:'',type:''}]
+	 * @param {Object[]} yocomycowego - A list of source and type obtained from video/audio/source tags: [{src:'',type:''}]
 	 * @param {?String[]} renderers - Optional list of pre-selected renderers
 	 * @return {?Object} The renderer's name and source selected
 	 * @method select
 	 */
-	select (mediaFiles, renderers = []) {
+	select (yocomycowego, renderers = []) {
 
 		const renderersLength = renderers.length;
 
@@ -77,12 +77,12 @@ class Renderer {
 			;
 
 			if (renderer !== null && renderer !== undefined) {
-				for (let j = 0, jl = mediaFiles.length; j < jl; j++) {
-					if (typeof renderer.canPlayType === 'function' && typeof mediaFiles[j].type === 'string' &&
-						renderer.canPlayType(mediaFiles[j].type)) {
+				for (let j = 0, jl = yocomycowego.length; j < jl; j++) {
+					if (typeof renderer.canPlayType === 'function' && typeof yocomycowego[j].type === 'string' &&
+						renderer.canPlayType(yocomycowego[j].type)) {
 						return {
 							rendererName: renderer.name,
-							src:  mediaFiles[j].src
+							src:  yocomycowego[j].src
 						};
 					}
 				}
@@ -123,4 +123,4 @@ class Renderer {
 
 export const renderer = new Renderer();
 
-mejs.Renderers = renderer;
+ycmc.Renderers = renderer;

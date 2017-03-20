@@ -105,7 +105,6 @@ const NativeHls = {
 	 * @return {Hls}
 	 */
 	createInstance: (settings) => {
-		console.log(settings.options);
 		const player = new Hls(settings.options);
 		window['__ready__' + settings.id](player);
 		return player;
@@ -160,7 +159,7 @@ const HlsNativeRenderer = {
 
 		node = originalNode.cloneNode(true);
 		options = Object.assign(options, mediaElement.options);
-		options.autoStartLoad = (preload === 'auto');
+		options.autoStartLoad = (preload === 'auto' || autoplay);
 
 		// WRAPPERS for PROPs
 		const
@@ -259,7 +258,7 @@ const HlsNativeRenderer = {
 				mediaElement.dispatchEvent(event);
 
 				if (e === 'hlsError') {
-					console.error(e, data);
+					console.warn(e, data);
 
 					// borrowed from http://dailymotion.github.io/hls.js/demo/
 					if (data.fatal) {
@@ -306,14 +305,18 @@ const HlsNativeRenderer = {
 			}
 		}
 
-		if (preload !== 'auto') {
+		if (preload !== 'auto' && !autoplay) {
 			node.addEventListener('play', () => {
-				hlsPlayer.startLoad();
-			}, false);
+				if (hlsPlayer !== null) {
+					hlsPlayer.startLoad();
+				}
+			});
 
 			node.addEventListener('pause', () => {
-				hlsPlayer.stopLoad();
-			}, false);
+				if (hlsPlayer !== null) {
+					hlsPlayer.stopLoad();
+				}
+			});
 		}
 
 		node.setAttribute('id', id);
@@ -329,9 +332,8 @@ const HlsNativeRenderer = {
 
 		// HELPER METHODS
 		node.setSize = (width, height) => {
-			node.style.width = width + 'px';
-			node.style.height = height + 'px';
-
+			node.style.width = `${width}px`;
+			node.style.height = `${height}px`;
 			return node;
 		};
 
@@ -347,11 +349,15 @@ const HlsNativeRenderer = {
 		};
 
 		node.destroy = () => {
-			hlsPlayer.destroy();
+			if (hlsPlayer !== null) {
+				hlsPlayer.destroy();
+			}
 		};
 
 		node.stop = () => {
-			hlsPlayer.stopLoad();
+			if (hlsPlayer !== null) {
+				hlsPlayer.stopLoad();
+			}
 		};
 
 		const event = createEvent('rendererready', node);

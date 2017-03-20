@@ -123,7 +123,7 @@ const FacebookRenderer = {
 
 								// Only way is to destroy instance and all the events fired,
 								// and create new one
-								fbDiv.parentNode.removeChild(fbDiv);
+								fbDiv.remove();
 								createFacebookEmbed(url, options.facebook);
 
 								// This method reloads video on-demand
@@ -236,7 +236,10 @@ const FacebookRenderer = {
 		 * @param {Object} config
 		 */
 		function createFacebookEmbed (url, config) {
+
+			// Append width and height if not detected
 			src = url;
+
 			fbDiv = document.createElement('div');
 			fbDiv.id = fbWrapper.id;
 			fbDiv.className = "fb-video";
@@ -264,8 +267,8 @@ const FacebookRenderer = {
 						// Set proper size since player dimensions are unknown before this event
 						const
 							fbIframe = fbDiv.getElementsByTagName('iframe')[0],
-							width = parseInt(window.getComputedStyle(fbIframe, null).width),
-							height = parseInt(fbIframe.style.height),
+							width = fbIframe.offsetWidth,
+							height = fbIframe.offsetHeight,
 							events = ['mouseover', 'mouseout'],
 							assignEvents = (e) => {
 								const event = mejs.Utils.createEvent(e.type, fbWrapper);
@@ -274,7 +277,7 @@ const FacebookRenderer = {
 						;
 
 						fbWrapper.setSize(width, height);
-						
+
 						for (let i = 0, total = events.length; i < total; i++) {
 							fbIframe.addEventListener(events[i], assignEvents, false);
 						}
@@ -340,12 +343,7 @@ const FacebookRenderer = {
 							paused = true;
 							ended = true;
 
-							// Workaround to update progress bar one last time and trigger ended event
-							timer = setInterval(() => {
-								fbApi.getCurrentPosition();
-								sendEvents(['timeupdate', 'ended']);
-							}, 250);
-
+							sendEvents(['ended']);
 							clearInterval(timer);
 							timer = null;
 						});
@@ -391,8 +389,8 @@ const FacebookRenderer = {
 		};
 		fbWrapper.setSize = (width, height) => {
 			if (fbApi !== null && !isNaN(width) && !isNaN(height)) {
-				fbDiv.setAttribute('width', width);
-				fbDiv.setAttribute('height', height);
+				fbDiv.style.width = width;
+				fbDiv.style.height = height;
 			}
 		};
 		fbWrapper.destroy = () => {

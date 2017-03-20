@@ -146,7 +146,7 @@ const DashNativeRenderer = {
 
 		let
 			node = null,
-			dashPlayer
+			dashPlayer = null
 		;
 
 		node = originalNode.cloneNode(true);
@@ -188,8 +188,8 @@ const DashNativeRenderer = {
 			mediaElement.dashPlayer = dashPlayer = _dashPlayer;
 
 			dashPlayer.getDebug().setLogToBrowserConsole(options.dash.debug);
-			dashPlayer.setAutoPlay(autoplay);
-			dashPlayer.setScheduleWhilePaused((preload === 'auto'));
+			dashPlayer.setAutoPlay((preload === 'auto' || autoplay));
+			dashPlayer.setScheduleWhilePaused((preload === 'auto' || autoplay));
 
 			const
 				events = mejs.html5media.events.concat(['click', 'mouseover', 'mouseout']),
@@ -259,9 +259,8 @@ const DashNativeRenderer = {
 
 		// HELPER METHODS
 		node.setSize = (width, height) => {
-			node.style.width = width + 'px';
-			node.style.height = height + 'px';
-
+			node.style.width = `${width}px`;
+			node.style.height = `${height}px`;
 			return node;
 		};
 

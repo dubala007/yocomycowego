@@ -453,7 +453,7 @@ var TwitchIframeRenderer = {
 				paused = false;
 				ended = false;
 				sendEvents(['rendererready', 'loadedmetadata', 'loadeddata', 'canplay']);
-			}, false);
+			});
 			twitchPlayer.addEventListener('play', function () {
 				if (!hasStartedPlaying) {
 					hasStartedPlaying = true;
@@ -467,14 +467,14 @@ var TwitchIframeRenderer = {
 					twitchPlayer.getCurrentTime();
 					sendEvents(['timeupdate']);
 				}, 250);
-			}, false);
+			});
 			twitchPlayer.addEventListener('pause', function () {
 				paused = true;
 				ended = false;
 				if (!twitchPlayer.getEnded()) {
 					sendEvents(['pause']);
 				}
-			}, false);
+			});
 			twitchPlayer.addEventListener('ended', function () {
 				paused = true;
 				ended = true;
@@ -482,7 +482,7 @@ var TwitchIframeRenderer = {
 				clearInterval(timer);
 				hasStartedPlaying = false;
 				timer = null;
-			}, false);
+			});
 		};
 
 		// CREATE Twitch
